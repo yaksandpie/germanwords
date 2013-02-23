@@ -1,0 +1,132 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+/* HTML5 display-role reset for older browsers */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+body{line-height:1;}
+ol,ul{list-style:none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* End CSS Reset */
+
+/* german words styles */
+body {
+	background:#eee;
+	font-size:14px;
+	font-family:'Droid Sans',Arial,sans-serif;
+}
+
+#flashcard-content {
+	position:relative;
+	width:80%;
+	min-height:550px;
+	font-size:1.5em;
+	margin:4em auto 0 auto;
+	text-align:center;
+	border:1px solid #ccc;
+	background:#fff;
+}
+
+#flashcard-words {
+	font-size:3em;
+	padding:2em 0;
+}
+
+#flashcard-words dd {
+	display: inline-block;
+	max-width: 75%;
+	margin:.5em auto 0 auto;
+	padding:.2em;
+	border:3px solid transparent;
+	color:#0052A5;
+}
+
+#flashcard-words .covered {
+	border:3px dashed #aaa;
+	color:#ccc;
+	background:#ccc;
+}
+
+.counter {
+	text-align:left;
+	font-size:1.25em;
+	padding:.5em;
+	border-bottom:1px solid #c00;
+	color:#aaa;
+}
+
+#app-nav {
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	min-height:3em;
+	padding-right: 50px;
+	text-align:left;
+	border-top:1px solid #c00;
+	color:#aaa;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#app-nav ul {
+	padding:.5em;
+}
+
+#app-nav strong {
+	color:#777;
+}
+
+#next-button {
+	position:absolute;
+	right:.5em;
+	top:.5em;
+	cursor:pointer;
+}
+
+@media only screen and (max-width : 650px) {
+	#flashcard-words {
+		font-size:2em;
+	}
+	
+	#flashcard-content {
+		min-height:450px;
+	}
+}
+
+@media only screen and (max-width : 425px) {
+	#flashcard-words {
+		font-size:1.5em;
+	}
+	
+	#flashcard-content {
+		min-height:375px;
+	}
+	
+	#flashcard-content {
+		margin-top:1.5em;
+	}
+	
+	#app-nav ul {
+		visibility: hidden;
+		height: 35px;
+	}
+}
+
+@media only screen and (max-width : 325px) {
+	#flashcard-words {
+		font-size:1em;
+	}
+
+	#flashcard-content {
+		min-height:300px;
+	}
+
+	#flashcard-content {
+		margin-top:1em;
+	}
+}

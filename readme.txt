@@ -1,0 +1,5 @@
+German Words!
+
+In my attempt to learn the German language, I needed a quick and easy flash card system for the words that I was learning progressively. Gradual introduction of words is the best so I devised an easy method for exposing my brain to those words. I started out with a Google Spreadsheet and created a small web project to parse the spreadsheet and make it all flashcard-y. After one reaches the end of the set, the word list is reordered and starts over again. It helped a bunch!
+
+The first variable in the javascript, json_url, is the shared Google Spreadsheet. To use your own, you'll have to open up the spreadsheet to the public and get its URL. The spreadsheet should have two columns; the first being the term that is exposed at the beginning and the second being the hidden word to be thought of. 

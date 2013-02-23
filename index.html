@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0;" />
+	<title>German Words</title>
+	<link rel="stylesheet" type="text/css" href="screen.css" />
+</head>
+<body>
+	<section id="flashcard-content">
+		<div class="counter">
+			<span id="counter-number">1</span> / <span id="counter-out-of">1</span>
+		</div>
+		<dl id="flashcard-words">
+			<dt>Deutsch</dt>
+			<dd class="covered">English</dd>
+		</dl>
+		<div id="app-nav">
+	        <ul id="keyboard-shortcuts">
+	            <li>press "<strong>A</strong>" to show answer</li>
+	            <li>press "<strong>N</strong>" for next word</li>
+	        </ul>
+			<img id="next-button" alt="next word" src="images/right_arrow.png" />
+		</div>
+	</section>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->	
+	<script type="text/javascript">
+		//get the google docs spreadsheet and parse it
+		var json_url = "https://spreadsheets.google.com/feeds/list/0Apb4s5wbGIYZdHo0ZVctRlFiRWt4aS1ja3pMak5DYXc/od6/public/basic?hl=en_US&alt=json";
+		var word_list = new Array();
+		var word_order = new Array();
+		var word_counter = 1;
+
+		function nextWordInList(){
+			//check to see if it's the last word in array. if so, resort and reset counter.
+			if (word_list.length == word_counter){
+				word_order.sort(function() { return 0.5 - Math.random() });
+				word_counter = 0;
+			};
+			//select current word using the word counter
+			var current_word = word_list[word_order[word_counter]];
+			word_counter++;
+		
+			//change the counter in the html
+			$("#counter-number").text(word_counter);
+		
+			//change the current word in the html to next in array
+			$("#flashcard-words dt").html(current_word.german[0]);
+		
+			//change the current answer in the html and add covered class
+			$("#flashcard-words dd").addClass("covered").html(current_word.english);
+		};
+
+		$.getJSON(json_url, function(data) {
+			$.each(data.feed.entry, function(key, val) {
+				var item = {};
+				item["german"] = [val.title.$t];
+				item["english"] = (val.content.$t.indexOf(": ") >= 0) ? val.content.$t.split(": ")[1] : val.content.$t;
+				word_list.push(item);
+		  	});
+
+			for(i=0;i<word_list.length;i++) {
+				word_order.push(i);
+			};
+
+			//randomly sort array
+			word_order.sort(function() { return 0.5 - Math.random() });
+
+			//change the counter in the html with the total number of words
+			$("#counter-out-of").text(word_list.length);
+		});	
+
+		$(document).ready(function() {
+			// on click of the next button
+			$("#next-button").click(function(){
+				nextWordInList();
+			});
+		
+			//remove class if it is clicked
+			$(".covered").click(function(){
+				$(".covered").removeClass("covered");
+			});
+		
+			$(document).keypress(function(e){
+				if (e.which == 97 || e.which == 65) { /* for the "A" key */
+					$(".covered").removeClass("covered");
+				} else if (e.which == 110 || e.which == 78) { /* for the "N" key */
+					nextWordInList();
+				};
+			});
+		});
+
+	</script>
+</body>
+</html>
